@@ -11,7 +11,7 @@ Mirá la implementación que esta ahora, correla algunas veces, y familiarizate 
 
 Ahora agregale semáforos para asegurar que haya solamente una vaca cruzando el puente a la vez. La ejecución debería verse así:
 
-![vaquitas cruzando el puente](assets/vaquitas.gif)
+![vaquitas cruzando el puente](vaquitas.gif)
 
 ## Ejercicio 2 - Robots
 ````
