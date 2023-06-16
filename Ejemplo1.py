@@ -18,8 +18,8 @@ class productor(threading.Thread):
         while True:
             valor = random.randint(1,5)
             cola.put(valor)
-       #     logging.info(f'Se produjo el valor {valor}')
-            logging.info(f'Se produjo el valor {valor}, cola {cola.queue}')
+      #      logging.info(f'Se produjo el valor {valor}')
+      #      logging.info(f'Se produjo el valor {valor}, cola {cola.queue}')
             time.sleep(random.randint(0,1))
 
 class consumidor(threading.Thread):
@@ -40,7 +40,7 @@ class consumidor(threading.Thread):
 
 hilos = []
 for i in range(5):
-    hilo = consumidor(2)
+    hilo = consumidor(random.randint(2,5))
     hilos.append(hilo)
 
 hilo = productor()

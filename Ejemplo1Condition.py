@@ -6,13 +6,16 @@ import queue
 
 logging.basicConfig(format='%(asctime)s.%(msecs)03d [%(threadName)s] - %(message)s', datefmt='%H:%M:%S', level=logging.INFO)
 
-sem2 = threading.Semaphore(5)
-sem1 = threading.Semaphore(2)
+
 lock = threading.Lock()
+
+max_consumidores = threading.Condition()
+consumiendo = 0
 
 
 cola = queue.Queue(10)
 valores = []
+
 class productor(threading.Thread):
     def __init__(self):
         super().__init__()
@@ -26,8 +29,8 @@ class productor(threading.Thread):
                 valores.append(valor)
        #     logging.info(f'Se produjo el valor {valor}, cola {valores}')
        #     logging.info(f'Se produjo el valor {valor}')
-        #    logging.info(f'Se produjo el valor {valor}, cola {cola.queue}')
-            time.sleep(random.randint(0,1))
+       #     logging.info(f'Se produjo el valor {valor}, cola {cola.queue}')
+            #time.sleep(random.randint(0,1))
 
 class consumidor(threading.Thread):
     def __init__(self, items):
@@ -36,20 +39,26 @@ class consumidor(threading.Thread):
         self.items = items
 
     def run(self):
+        global consumiendo, max_consumidores
         while True:
             self.medida.clear()
-            with sem1:
+            with max_consumidores:
+                while consumiendo == 2:
+                    max_consumidores.wait()
+                consumiendo += 1
                 for k in range (self.items):
                     item = cola.get()
                     self.medida.append(item)
                     time.sleep(random.randint(0,1))
             #    logging.info(f'Consumió el valor {item}')
+                consumiendo -= 1
                 logging.info(f'medida {self.medida} promedio = {sum(self.medida)/self.items}')
+                max_consumidores.notify_all()
             time.sleep(random.randint(0,1))
 
 hilos = []
 for i in range(15):
-    hilo = consumidor(2)
+    hilo = consumidor(random.randint(2,5))
     hilos.append(hilo)
 
 hilo = productor()
