@@ -69,8 +69,10 @@ El siguiente programa implementa un hilo productor y N hilos consumidores (N = 5
 
 2. Resolver el ejercicio anterior utilizando variables de condición.
 
-## Ejercicio 4 - Regiones Críticas Condicionales
+3. Como implementaria una condición con semáforos?
 
-### Ejercicio
+# Regiones Críticas Condicionales
 
-1. Resolver el ejercicio anterior implementando Regiones Críticas Condicionales
+### Ejercicio 
+
+Resolver el ejercicio anterior implementando Regiones Críticas Condicionales
