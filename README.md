@@ -73,6 +73,10 @@ El siguiente programa implementa un hilo productor y N hilos consumidores (N = 5
 
 # Regiones Críticas Condicionales
 
-### Ejercicio 
+### Ejercicio 4
 
 Resolver el ejercicio anterior implementando Regiones Críticas Condicionales
+
+### Ejercicio 5
+
+Resolver el ejercicio anterior implementando un Monitor
